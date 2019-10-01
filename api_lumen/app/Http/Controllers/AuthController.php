@@ -32,6 +32,7 @@ class AuthController extends BaseController
         $user = $request->user();
         $user->api_token = bin2hex(openssl_random_pseudo_bytes(32));
         $user->save();
+        return response($user->api_token, 200);
     }
 
     /**
