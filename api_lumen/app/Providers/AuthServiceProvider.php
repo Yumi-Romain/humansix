@@ -34,6 +34,11 @@ class AuthServiceProvider extends ServiceProvider
             if ($request->input('api_token')) {
                 return User::where('api_token', $request->input('api_token'))->first();
             }
+            $authheader = $request->header('Authorization');
+            if ($authheader && !empty($authheader)) {
+                preg_match('/^Bearer (([a-f]|[0-9]){64})$/', $authheader, $matches);
+                return User::where('api_token', $matches[1])->first();
+            }
         });
     }
 }

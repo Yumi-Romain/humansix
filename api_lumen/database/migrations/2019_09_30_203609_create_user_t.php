@@ -14,8 +14,9 @@ class CreateUserT extends Migration
         Schema::dropIfExists('user');
         Schema::create('user', function (Blueprint $table) {
             $table->unsignedInteger('id')->autoIncrement(); // primary key
-            $table->string('username', 150);
-            $table->string('password', 128);
+            $table->string('api_token', 64);
+            $table->string('username', 150)->unique();
+            $table->string('password', 64);
         });
     }
     /**

@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use App\Product;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
     /**
      * @return Response
      */
     public function getAll() {
-        $orders = DB::select('SELECT * FROM order');
-        return response()->json($orders);
+        $products = Product::all();
+        return response()->json($products);
     }
 
     /**
      * @return Response
      */
     public function getById($id) {
-        $orders = DB::select('SELECT * FROM order');
-        return response()->json($orders);
+        $product = Product::find($id);
+        return response()->json($product);
     }
 }

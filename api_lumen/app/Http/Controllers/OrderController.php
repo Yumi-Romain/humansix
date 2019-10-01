@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-// use Laravel\Lumen\Routing\Controller as BaseController;
+use Laravel\Lumen\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use App\Order;
 
-class OrderController extends Controller
+class OrderController extends BaseController
 {
     /**
      * @return Response
      */
     public function getAll() {
-        $orders = DB::select('SELECT * FROM order');
+        $orders = Order::all();
+        foreach ($orders as $order) {
+            $order->customer = Customer::find($order->customer);
+        }
         return response()->json($orders);
     }
 
@@ -19,7 +23,7 @@ class OrderController extends Controller
      * @return Response
      */
     public function getById($id) {
-        $orders = DB::select('SELECT * FROM order');
-        return response()->json($orders);
+        $order = Order::find($id);
+        return response()->json($order);
     }
 }
