@@ -15,6 +15,15 @@ class Order extends Model
     protected $fillable = ['id', 'orderDate', 'status', 'customer'];
 
     /**
+     * The defaults attributes values
+     * 
+     * @var array
+     */
+    protected $attributes = [
+        'status' => 'processing'
+    ];
+
+    /**
      * The primary key associated with the table.
      *
      * @var string

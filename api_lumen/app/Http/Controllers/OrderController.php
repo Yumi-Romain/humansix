@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\Customer;
 use App\Product;
+use App\OrderProduct;
 
 class OrderController extends BaseController
 {
@@ -53,5 +54,22 @@ class OrderController extends BaseController
         }
         $order->cart = [ 'product' => $products ];
         return response()->json($order);
+    }
+
+    public function createOrder(Request $request) {
+        $order = new Order();
+        $order->customer = $request->input('customer');
+        $order->orderDate = date('Y-m-d H:i:s');
+        $order->save();
+        // $order->fresh();
+
+        foreach ($request->input('products') as $product) {
+            $orderProduct = new OrderProduct();
+            $orderProduct->order = $order->id;
+            $orderProduct->product = $product['sku'];
+            $orderProduct->quantity = $product['quantity'];
+            $orderProduct->save();
+        }
+        return response('done');
     }
 }

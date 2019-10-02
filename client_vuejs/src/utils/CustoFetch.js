@@ -54,6 +54,33 @@ export class HumansixApi {
         })
     }
 
+    static customers() {
+        return new Promise(function (resolve, reject) {
+            genericGetWithToken('http://localhost:81/api/customers')
+                .then(res => {
+                    if (res.status === 200) {
+                        resolve(res.data)
+                    } else {
+                        reject({status: res.status})
+                    }
+                }).catch(reject)
+        })
+    }
+
+    static createOrder(form) {
+        return new Promise(function (resolve, reject) {
+            genericPostWithToken('http://localhost:81/api/createorder', form)
+                .then(res => {
+                    if (res.status === 200) {
+                        resolve(res.data)
+                    } else {
+                        reject({ status: res.status })
+                    }
+                })
+                .catch(reject)
+        })
+    }
+
     static uploadFile(form) {
         return new Promise(function (resolve, reject) {
             genericPostWithToken('http://localhost:81/api/uploadorder', form)

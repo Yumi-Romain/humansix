@@ -28,6 +28,10 @@ $router->group(['middleware' => 'auth'], function() use ($router) {
         $router->get('/order/{id}', 'OrderController@getById');
         $router->get('/products', 'ProductController@getAll');
         $router->get('/product/{id}', 'ProductController@getById');
+        
+        $router->post('/createorder', 'OrderController@createOrder');
+        $router->get('/customers', 'CustomerController@getAll');
+
         $router->post('/uploadorder', 'FileController@handleFile');
 
     });
