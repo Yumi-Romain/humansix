@@ -13,12 +13,12 @@ class CreateOrderProductT extends Migration
     {
         Schema::dropIfExists('order_product');
         Schema::create('order_product', function (Blueprint $table) {
-            $table->unsignedInteger('product');
+            $table->string('product', 10);
             $table->unsignedInteger('order');
             $table->unsignedInteger('quantity');
             $table->primary(['product', 'order']);
-            $table->foreign('product')->references('id')->on('product')->onDelete('cascade');
             $table->foreign('order')->references('id')->on('order')->onDelete('cascade');
+            $table->foreign('product')->references('sku')->on('product')->onDelete('cascade');
         });
     }
     /**

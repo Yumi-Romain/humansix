@@ -8,6 +8,13 @@ class Order extends Model
 {
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['id', 'orderDate', 'status', 'customer'];
+
+    /**
      * The primary key associated with the table.
      *
      * @var string

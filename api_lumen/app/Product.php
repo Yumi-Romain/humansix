@@ -8,11 +8,19 @@ class Product extends Model
 {
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */ 
+    protected $fillable = ['sku', 'name', 'price'];
+
+    /**
      * The primary key associated with the table.
      *
      * @var string
      */
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'sku';
+    public $incrementing = false;
 
     /**
      * The table associated with the model.

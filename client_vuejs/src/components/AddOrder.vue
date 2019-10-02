@@ -4,7 +4,7 @@
             <div class="form-group">
                 <label for="file">Example file input</label>
                 <input type="file" class="form-control-file" id="file">
-                <input type="submit" value="submit">
+                <button type="submit" class="btn btn-primary">Connexion</button>
             </div>
         </form>
     </div>
@@ -18,8 +18,13 @@
         name: 'AddOrders',
         methods: {
             uploadFile(e) {
-                alert(document.getElementById('file').file.name)
-                // HumansixApi.uploadFile()
+                const input = document.getElementById('file')
+                if (input && input.files.length > 0) {
+                    const file = input.files[0]
+                    var form = new FormData()
+                    form.append('xml', file)
+                    HumansixApi.uploadFile(form).then(console.log).catch(console.log)
+                }
                 e.preventDefault()
             },
             changeHandler(e) {

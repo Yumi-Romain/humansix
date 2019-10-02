@@ -8,6 +8,13 @@ class Customer extends Model
 {
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['id', 'firstname', 'lastname'];
+
+    /**
      * The primary key associated with the table.
      *
      * @var string

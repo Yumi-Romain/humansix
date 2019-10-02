@@ -8,11 +8,19 @@ class OrderProduct extends Model
 {
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['product', 'order', 'quantity'];
+
+    /**
      * The primary key associated with the table.
      *
-     * @var string
+     * @var array
      */
-    protected $primaryKey = 'id';
+    protected $primaryKey = ['product', 'order'];
+    public $incrementing = false;
 
     /**
      * The table associated with the model.

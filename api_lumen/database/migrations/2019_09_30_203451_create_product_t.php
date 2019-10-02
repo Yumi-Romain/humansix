@@ -13,9 +13,10 @@ class CreateProductT extends Migration
     {
         Schema::dropIfExists('product');
         Schema::create('product', function (Blueprint $table) {
-            $table->unsignedInteger('id')->autoIncrement(); // primary key
+            $table->string('sku', 10); // primary key
             $table->string('name', 150);
             $table->decimal('price', 10, 2); // price XXXXXXXX,XX
+            $table->primary('sku');
         });
     }
     /**

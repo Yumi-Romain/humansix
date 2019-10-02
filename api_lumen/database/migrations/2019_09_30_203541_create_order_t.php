@@ -14,10 +14,10 @@ class CreateOrderT extends Migration
         Schema::dropIfExists('order');
         Schema::create('order', function (Blueprint $table) {
             $table->unsignedInteger('id')->autoIncrement(); // primary key
-            $table->dateTime('order_date');
+            $table->dateTime('orderDate');
             $table->string('status', 150);
             $table->unsignedInteger('customer');
-            $table->foreign('customer')->references('id')->on('customer')->onDelete('cascade'); // foreign key
+            $table->foreign('customer')->references('id')->on('customer')->onDelete('no action'); // foreign key
         });
     }
     /**
