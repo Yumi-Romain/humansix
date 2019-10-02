@@ -63,10 +63,12 @@
         },
         methods: {
             submit(e) {
-                console.log(this.selectedCustomer)
+                this.loading = true
                 HumansixApi.createOrder({
                     customer: this.selectedCustomer,
                     products: this.products.filter(p => p.quantity > 0)
+                }).then(() => {
+                    this.loading = true
                 })
                 e.preventDefault()
             }

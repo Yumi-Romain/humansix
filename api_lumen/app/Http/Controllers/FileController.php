@@ -36,7 +36,7 @@ class FileController extends BaseController
     private function orderHandler($value) {
         $order = null;
         
-        // if we have an id in the xml pass it to the object
+        // if we have an id in the xml,
         // check if we allready have it in the DB
         if (isset($value->attributes()->id)) {
             $existante = Order::find($value->attributes()->id);
@@ -48,7 +48,7 @@ class FileController extends BaseController
             }
         }
         
-        // pass others non-optional arguments
+        // pass others non-optionals arguments
         $order->orderDate = $value->orderDate;
         $order->status = $value->status;
         $order->customer = FileController::customerHandler($value->customer);
@@ -83,11 +83,17 @@ class FileController extends BaseController
         // if the xml only contain product we 
         // call the product handler without $orderId
         if (!is_null($orderId)) {
-            $orderProduct = new OrderProduct();
-            $orderProduct->order = $orderId;
-            $orderProduct->product = $product->sku;
-            $orderProduct->quantity = $value->quantity;
-            $orderProduct->save();
+            $orderProduct = OrderProduct::where('order', $orderId)->where('product', $product->sku)->first();
+            if (!$orderProduct) {
+                $orderProduct = new OrderProduct();
+                $orderProduct->order = $orderId;
+                $orderProduct->product = $product->sku;
+                $orderProduct->quantity = $value->quantity;
+                $orderProduct->save();
+            } else {
+                OrderProduct::where('order', $orderId)->where('product', $product->sku)
+                    ->update(['quantity' => $value->quantity]);
+            }
         }
     }
 

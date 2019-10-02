@@ -1,6 +1,6 @@
 <template>
-    <div class="w-100 h-100 d-flex flex-column">
-        <nav class="navbar navbar-dark bg-dark">
+    <div class="w-100 h-100 position-relative d-flex flex-column">
+        <nav v-if="loggedIn" class="navbar navbar-dark bg-dark">
             <a class="navbar-brand" href="#">Humansix</a>
             <div class="btn-group" role="group" aria-label="Basic example">
                 <router-link class="btn btn-outline-primary" to="/">Liste des commandes</router-link>
@@ -18,11 +18,28 @@
 <script>
     export default {
         name: 'App',
+        data() {
+            return {
+                loggedIn: false
+            }
+        },
+        watch: {
+            $route(to) {
+                if (to.path === '/login') {
+                    this.loggedIn = false
+                } else {
+                    this.loggedIn = true
+                }
+            }
+        },
         methods: {
             logout() {
                 localStorage.clear();
                 this.$router.push('/login')
             }
+        },
+        mounted() {
+            this.loggedIn = this.$route.path !== '/login'
         }
     }
 </script>

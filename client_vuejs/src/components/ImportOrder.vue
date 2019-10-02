@@ -10,6 +10,7 @@
                 <button type="submit" class="btn btn-primary">Envoyer</button>
             </div>
         </form>
+        <my-loader v-if="loading"/>
     </div>
 </template>
 
@@ -21,22 +22,26 @@
         name: 'ImportOrder',
         data() {
             return {
-                label: 'Choisissez un fichier xml'
+                label: 'Choisissez un fichier xml',
+                loading: false
             }
         },
         methods: {
             uploadFile(e) {
                 const input = document.getElementById('file')
                 if (input && input.files.length > 0) {
+                    this.loading = true
                     const file = input.files[0]
                     const form = new FormData()
                     form.append('xml', file)
                     HumansixApi.uploadFile(form)
                         .then(() => {
-                            this.$router.push('/orders')
+                            this.$router.push('/')
+                            this.loading = false
                         })
                         .catch(() => {
                             alert('Une erreur est survenue ... :(')
+                            this.loading = false
                         })
                 }
                 e.preventDefault()

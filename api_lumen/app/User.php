@@ -51,4 +51,6 @@ class User extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    protected $hidden = ['password'];
 }
