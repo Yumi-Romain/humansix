@@ -33,7 +33,7 @@ export class HumansixApi {
 
     static login(username, password) {
         return new Promise(function (resolve, reject) {
-            axios.post('http://localhost:81/login', { username, password })
+            axios.post('http://localhost:81/api/login', { username, password })
                 .then(res => genericResolve(res, resolve, reject))
                 .catch(err => genericReject(err, reject))
         })
