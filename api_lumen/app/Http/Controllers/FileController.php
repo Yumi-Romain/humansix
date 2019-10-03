@@ -27,7 +27,7 @@ class FileController extends BaseController
             FileController::productHandler($product);
         }
         
-        $customers = $xml->product;
+        $customers = $xml->customer;
         foreach ($customers as $customer) {
             FileController::customerHandler($customer);
         }
