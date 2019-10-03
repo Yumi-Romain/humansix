@@ -11,7 +11,7 @@ php artisan migrate --seed
 
 echo " | installing and building vue project (it might take few minutes)"
 cd /vagrant/client_vuejs
-sudo npm install
+sudo npm install --no-bin-links
 sudo npm install -g @vue/cli
 sudo npm install -g @vue/cli-service
 sudo npm install -g @vue/cli-plugin-babel
