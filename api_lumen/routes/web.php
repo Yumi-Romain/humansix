@@ -18,6 +18,7 @@ $router->get('/', function () {
 
 $router->group(['prefix' => '/api'], function() use ($router) {
     
+    $router->post('/login', 'AuthController@login');
     $router->post('/register', 'AuthController@register');
     
     // expose thoses routes to all users
@@ -30,7 +31,6 @@ $router->group(['prefix' => '/api'], function() use ($router) {
     $router->group(['middleware' => 'auth'], function() use ($router) {
         
         $router->get('/renew', 'AuthController@renewToken');
-        $router->post('/login', 'AuthController@login');
         $router->post('/createorder', 'OrderController@createOrder');
         $router->post('/uploadorder', 'FileController@handleFile');
         $router->get('/customers', 'CustomerController@getAll');

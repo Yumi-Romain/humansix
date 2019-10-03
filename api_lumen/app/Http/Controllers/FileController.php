@@ -75,7 +75,7 @@ class FileController extends BaseController
     private function productHandler($value, $orderId = null) {
         $product = Product::updateOrCreate(
             ['sku' => $value->attributes()->sku],
-            ['name' => $value->name, 'price' => floatval($value->price), 'sku' => $value->attributes()->sku],
+            ['name' => $value->name, 'price' => floatval($value->price), 'sku' => $value->attributes()->sku]
         );
 
         $product->fresh();

@@ -33,7 +33,7 @@ export class HumansixApi {
 
     static login(username, password) {
         return new Promise(function (resolve, reject) {
-            axios.post('http://localhost:81/api/login', { username, password })
+            axios.post(`http://${location.host}/api/login`, { username, password })
                 .then(res => genericResolve(res, resolve, reject))
                 .catch(err => genericReject(err, reject))
         })
@@ -41,7 +41,7 @@ export class HumansixApi {
 
     static orders() {
         return new Promise(function (resolve, reject) {
-            genericGetWithToken('http://localhost:81/api/orders')
+            genericGetWithToken(`http://${location.host}/api/orders`)
                 .then(res => genericResolve(res, resolve, reject))
                 .catch(err => genericReject(err, reject))
         })
@@ -49,7 +49,7 @@ export class HumansixApi {
 
     static products() {
         return new Promise(function (resolve, reject) {
-            genericGetWithToken('http://localhost:81/api/products')
+            genericGetWithToken(`http://${location.host}/api/products`)
                 .then(res => genericResolve(res, resolve, reject))
                 .catch(err => genericReject(err, reject))
         })
@@ -57,7 +57,7 @@ export class HumansixApi {
 
     static customers() {
         return new Promise(function (resolve, reject) {
-            genericGetWithToken('http://localhost:81/api/customers')
+            genericGetWithToken(`http://${location.host}/api/customers`)
                 .then(res => genericResolve(res, resolve, reject))
                 .catch(err => genericReject(err, reject))
         })
@@ -65,7 +65,7 @@ export class HumansixApi {
 
     static createOrder(form) {
         return new Promise(function (resolve, reject) {
-            genericPostWithToken('http://localhost:81/api/createorder', form)
+            genericPostWithToken(`http://${location.host}/api/createorder`, form)
                 .then(res => genericResolve(res, resolve, reject))
                 .catch(err => genericReject(err, reject))
         })
@@ -73,7 +73,7 @@ export class HumansixApi {
 
     static uploadFile(form) {
         return new Promise(function (resolve, reject) {
-            genericPostWithToken('http://localhost:81/api/uploadorder', form)
+            genericPostWithToken(`http://${location.host}/api/uploadorder`, form)
                 .then(res => genericResolve(res, resolve, reject))
                 .catch(err => genericReject(err, reject))
         })
