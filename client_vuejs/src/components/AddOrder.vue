@@ -68,7 +68,8 @@
                     customer: this.selectedCustomer,
                     products: this.products.filter(p => p.quantity > 0)
                 }).then(() => {
-                    this.loading = true
+                    this.loading = false
+                    this.$router.push('/')
                 })
                 e.preventDefault()
             }
