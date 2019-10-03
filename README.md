@@ -4,7 +4,7 @@
 ## Prérequis
 
 + [Vagrant](https://www.vagrantup.com/)
-+ Port 8888 ouvert
++ Port 8888 libre
 
 ## Installation
 
